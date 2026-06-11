@@ -1,4 +1,40 @@
 ---
+import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+
+const pageTitle = "About Me";
+
+const identity = {
+	firstName: "Sarah",
+	country: "India",
+	occupation: "Web Developer",
+	hobbies: ["Cooking", "Traveling", "Birdwatching"],
+};
+
+const skills = [
+	"HTML",
+	"CSS",
+	"JavaScript",
+	"Astro",
+	"React",
+	"Node.js",
+];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+
+const operatingSystem = "Linux";
+const quantity = 3;
+const footwear = "boots";
+const student = true;
+
+const skillColor = "crimson";
+const fontWeight = "bold";
+const textCase = "uppercase";
 
 ---
 <html lang="en">
@@ -8,14 +44,49 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{pageTitle}</title>
+
+		<style define:vars={{skillColor, fontWeight, textCase}}>
+			h1 {
+				color: purple;
+				font-size: 4rem;
+			}
+
+			.skill{
+				color: var(--skillColor);
+				font-weight: var(--fontWeight);
+				text-transform: var(--textCase);
+			}
+		</style>
 	</head>
 	<body>
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
+		<Navigation />
 
-		<h1>About Me</h1>
+		<p>Here are few details about me:</p>
+
+		<p>My name is {identity.firstName}</p>
+
+
+		<ul>
+			<li>I am from {identity.country}</li>
+			<li>I work as a {identity.occupation}</li>
+			<li>My hobbies include:</li>
+
+			<ul>
+				{identity.hobbies.map(skill => (
+					<li>{skill}</li>
+				))}
+			</ul>
+		</ul>
+
+		<p>My skills are:</p>
+		<ul>
+			{skills.map(skill => (
+				<li class="skill">{skill}</li>
+			))}
+		</ul>
+
+		<h1>{pageTitle}</h1>
         <h2>... and my new Astro site!</h2>
 
         <p>
@@ -25,5 +96,18 @@
         <p>
             This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!
         </p>
+
+		{happy && <p>I am happy to be learning Astro!</p>}
+
+		{finished && <p>I have finished the tutorial!</p>}
+
+		{goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
+
+		<p>{operatingSystem}</p>
+		{student && <p>I am a student.</p>}
+		<p> i have {quantity + 8} pair of {footwear}</p>
+		{operatingSystem === "Linux" ? <p>I am using Linux</p> : <p>I am not using Linux</p>}
+
+		<Footer />
 	</body>
 </html>

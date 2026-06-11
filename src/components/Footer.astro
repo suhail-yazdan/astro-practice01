@@ -1,0 +1,23 @@
+---
+import Social from './Social.astro';
+
+const paltform = "github";
+const username = "Suhail-Dev";
+
+
+---
+
+<footer>
+    <p>Follow me on <a href={`https://${paltform}.com/${username}`}>{paltform}</a></p>
+    <Social platform="twitter" username="astrodotbuild" />
+    <Social platform="youtube" username="withastro" />
+    <Social platform="github" username="astrodotbuild" />
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+</style>
