@@ -1,9 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const tags = ['astro', 'blogging', 'learning in public', 'successes', 'setbacks', 'community']
 const pageTitle = "Home Page";
 ---
 
 
 <BaseLayout pageTitle={pageTitle}>
-	<h2>My Awsome Blog subtitle</h2>
+	<h2>My Astro Learning Blog</h2>
+	
+	<ul>
+    	{tags.map((tag) => <li><a href={`/tags/${tag}`}>{tag}</a></li>)}
+  	</ul>
 </BaseLayout>
